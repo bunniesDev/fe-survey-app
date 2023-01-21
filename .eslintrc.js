@@ -20,9 +20,14 @@ module.exports = {
       1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
   },
   settings: {
-    'import/core-modules': ['styled-components'], // import 오류나는 패키지를 여기에 추가해줘야함
+    'import/core-modules': ['styled-components', 'react-router-dom'], // import 오류나는 패키지를 여기에 추가해줘야함
   },
 };
