@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { DialogDispatchContext, DialogStateContext } from './DialogContext';
 
 function Dialog() {
-  const isOpenDialogs = useContext(DialogStateContext);
+  const opendDialogs = useContext(DialogStateContext);
   const { close } = useContext(DialogDispatchContext);
 
-  return isOpenDialogs.map((dialog, index) => {
+  return opendDialogs.map((dialog, index) => {
     const { Component, props } = dialog;
     const { onSubmit, ...restProps } = props;
 

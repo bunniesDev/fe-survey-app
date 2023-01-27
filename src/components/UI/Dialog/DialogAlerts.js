@@ -72,7 +72,7 @@ function DialogContainer({
 
   return createPortal(
     <StyledDialogContainer>
-      <StyledDimmed />
+      <StyledDimmed onClick={handleClickCancel} />
       <StyledDialog>
         {title && <StyledDialogHeader>{title}</StyledDialogHeader>}
         <StyledDialogContents>{children}</StyledDialogContents>
