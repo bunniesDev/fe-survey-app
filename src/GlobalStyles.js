@@ -9,12 +9,15 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
   body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     font-weight: normal;
   }
+
   ol, ul {
     list-style: none;
   }
+
   img {
     max-width: 100%;
     height: auto;

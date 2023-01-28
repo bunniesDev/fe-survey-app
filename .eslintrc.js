@@ -23,11 +23,18 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: true,
+        devDependencies: false,
+        optionalDependencies: false,
+        peerDependencies: false,
       },
     ],
   },
   settings: {
-    'import/core-modules': ['styled-components', 'react-router-dom'], // import 오류나는 패키지를 여기에 추가해줘야함
+    // 'import/core-m'
+    'import/core-modules': [
+      'styled-components',
+      'react-router-dom',
+      'chart.js/auto',
+    ], // import 오류나는 패키지를 여기에 추가해줘야함
   },
 };

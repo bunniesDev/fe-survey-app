@@ -3,7 +3,7 @@ import GlobalStyles from './GlobalStyles';
 function App() {
   return (
     <div>
-      <GlobalStyles />
+      <GlobalStyles /> test
     </div>
   );
 }
