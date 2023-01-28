@@ -32,6 +32,11 @@ module.exports = {
     'react/no-array-index-key': 'off',
   },
   settings: {
-    'import/core-modules': ['styled-components', 'react-router-dom'], // import 오류나는 패키지를 여기에 추가해줘야함
+    // 'import/core-m'
+    'import/core-modules': [
+      'styled-components',
+      'react-router-dom',
+      'chart.js/auto',
+    ], // import 오류나는 패키지를 여기에 추가해줘야함
   },
 };
