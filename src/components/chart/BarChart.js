@@ -3,22 +3,21 @@ import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import styled from 'styled-components';
 import { backgroundColor, borderColor } from './color';
+import Card from '../UI/Card';
 
-/* Canvas Wrapper */
+/* Wrapper */
 const Wrapper = styled.div`
-  /* min-width: ${props =>
-    props.minWidth ? `${props.minWidth}` : 'inherit'}; */
-  /* min-height: ${props =>
-    props.minHeight ? `${props.minHeight}` : 'inherit'}; */
   margin-bottom: 2rem;
-  & canvas {
-    margin: 0 auto;
-  }
 `;
 
 /* Title */
 const Title = styled.h3`
   text-align: center;
+`;
+
+/* Canvas Wrapper */
+const CanvasWrapper = styled.div`
+  min-height: 300px;
 `;
 
 // domId, data, label, xy축 결정
@@ -38,7 +37,7 @@ function BarChart({
     // labels: QUESTION[1].options,
     datasets: [
       {
-        label: '', // 사용안함
+        label: ' ', // 사용안함
         data: chartData,
         // data: mock.q1.options,
         backgroundColor,
@@ -58,7 +57,6 @@ function BarChart({
       //   xAxes: {},
       //   yAxes: {},
       // },
-      // reponsive: false,
       maintainAspectRatio: false,
       indexAxis: axis,
       plugins: {
@@ -97,9 +95,11 @@ function BarChart({
   return (
     <Wrapper minHeight={minHeight} minWidth={minWidth}>
       <Title>{title}</Title>
-      <div>
-        <canvas ref={canvasRef} id={`chart${id}`} />
-      </div>
+      <Card>
+        <CanvasWrapper style={{ minHeight: '300px' }}>
+          <canvas ref={canvasRef} id={`chart${id}`} />
+        </CanvasWrapper>
+      </Card>
     </Wrapper>
   );
 }
