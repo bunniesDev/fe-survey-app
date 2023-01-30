@@ -23,7 +23,7 @@ function ChartPage() {
         <BarChart
           key={chart.title}
           id={chart.title}
-          chartData={chart.chartData}
+          data={chart.chartData}
           labels={chart.labels}
           axis="x"
           title={chart.title}

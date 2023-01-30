@@ -22,7 +22,7 @@ const CanvasWrapper = styled.div`
 
 // domId, data, label, xy축 결정
 function BarChart({
-  chartData = [],
+  data = [],
   labels = [],
   axis = 'x',
   title = '',
@@ -32,14 +32,12 @@ function BarChart({
 }) {
   const canvasRef = useRef();
 
-  const data = {
+  const chartData = {
     labels,
-    // labels: QUESTION[1].options,
     datasets: [
       {
         label: ' ', // 사용안함
-        data: chartData,
-        // data: mock.q1.options,
+        data,
         backgroundColor,
         borderColor,
         borderWidth: 3,
@@ -49,7 +47,7 @@ function BarChart({
   };
   const config = {
     type: 'bar',
-    data,
+    data: chartData,
     borderWidth: 1,
     plugins: [ChartDataLabels],
     options: {
