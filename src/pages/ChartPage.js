@@ -3,6 +3,7 @@ import BarChart from '../components/chart/BarChart';
 import { mock, QUESTION } from '../components/chart/data';
 
 function ChartPage() {
+  // mock data
   const dataList = [
     {
       chartData: mock.q1.options,
@@ -17,7 +18,7 @@ function ChartPage() {
   ];
 
   return (
-    <main>
+    <>
       {dataList.map(chart => (
         <BarChart
           key={chart.title}
@@ -28,7 +29,7 @@ function ChartPage() {
           title={chart.title}
         />
       ))}
-    </main>
+    </>
   );
 }
 
