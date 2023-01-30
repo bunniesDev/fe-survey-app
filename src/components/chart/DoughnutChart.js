@@ -1,17 +1,43 @@
 import { Chart, registerables } from 'chart.js';
 import { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import Card from '../UI/Card';
-// import useChart from '../../hooks/useChart';
 
-function DoughnutChart({ title, labels, data }) {
+/* Wrapper */
+const Wrapper = styled.div`
+  margin-bottom: 2rem;
+`;
+
+/* Title */
+const Title = styled.h3`
+  text-align: center;
+`;
+
+/* Canvas Wrapper */
+const CanvasWrapper = styled.div`
+  min-height: 300px;
+`;
+
+function DoughnutChart({
+  data = [],
+  labels = [],
+  title = '',
+  minHeight,
+  minWidth,
+  id,
+}) {
   const canvasRef = useRef();
+  const total = data.reduce((acc, cur) => acc + cur);
+  const sortLabelAndData = data
+    .map((value, index) => [labels[index], Math.floor((value / total) * 100)])
+    .sort((a, b) => b[1] - a[1]);
 
   const chartData = {
-    labels,
+    labels: sortLabelAndData.map(LabelAndData => LabelAndData[0]),
     datasets: [
       {
-        label: 'My First Dataset',
-        data,
+        label: ' ',
+        data: sortLabelAndData.map(LabelAndData => LabelAndData[1]),
         hoverOffset: 4,
       },
     ],
@@ -31,9 +57,29 @@ function DoughnutChart({ title, labels, data }) {
             },
           },
         },
-        title: {
-          display: true,
-          text: title,
+        datalabels: {
+          labels: {
+            name: {
+              formatter: (val, ctx) => {
+                if (val < 15) {
+                  return '';
+                }
+
+                return ctx.chart.data.labels[ctx.dataIndex];
+              },
+              align: 'bottom',
+            },
+            value: {
+              formatter: value => {
+                if (value < 3) {
+                  return '';
+                }
+
+                return `${value}%`;
+              },
+              align: 'center',
+            },
+          },
         },
       },
     },
@@ -51,9 +97,14 @@ function DoughnutChart({ title, labels, data }) {
   }, []);
 
   return (
-    <Card>
-      <canvas id="canvas" ref={canvasRef} />
-    </Card>
+    <Wrapper minHeight={minHeight} minWidth={minWidth}>
+      <Title>{title}</Title>
+      <Card>
+        <CanvasWrapper>
+          <canvas ref={canvasRef} id={`chart${id}`} />
+        </CanvasWrapper>
+      </Card>
+    </Wrapper>
   );
 }
 
