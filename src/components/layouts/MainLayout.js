@@ -2,7 +2,7 @@ import React from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import styled from 'styled-components';
 import Header from './Header';
-import Button from '../Button';
+import Button from '../UI/Button';
 
 const StyledMainLayout = styled.main`
   max-width: 800px;

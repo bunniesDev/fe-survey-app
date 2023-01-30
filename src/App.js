@@ -8,7 +8,8 @@ import Row from './components/UI/Grid/Row';
 import RadioButton from './components/UI/RadioButton/RadioButton';
 import RadioButtonGroup from './components/UI/RadioButton/RadioButtonGroup';
 import GlobalStyles from './GlobalStyles';
-import MainLayout from './components/UI/layouts/MainLayout';
+import ChartPage from './pages/ChartPage';
+import MainLayout from './components/layouts/MainLayout';
 import useDialogs from './components/UI/Dialog/useDialogs';
 import ProgressBar from './components/UI/ProgressBar';
 import DialogAlerts from './components/UI/Dialog/DialogAlerts';
@@ -56,6 +57,7 @@ function App() {
   };
   return (
     <MainLayout>
+      <ChartPage />
       <Card>
         <ProgressBar step="4" total="20" />
       </Card>
