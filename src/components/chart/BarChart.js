@@ -55,6 +55,12 @@ function BarChart({
       //   xAxes: {},
       //   yAxes: {},
       // },
+      layout: {
+        padding: {
+          top: axis === 'x' ? 30 : 0,
+          right: axis === 'y' ? 30 : 0,
+        },
+      },
       maintainAspectRatio: false,
       indexAxis: axis,
       plugins: {
