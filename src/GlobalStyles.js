@@ -4,7 +4,6 @@ const GlobalStyles = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: border-box;
   }
-
   html, body {
     font-size: 16px;
     padding: 0;
@@ -23,12 +22,10 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
     height: auto;
   }
-
   button {
     cursor: pointer;
     outline: none;
   }
-
   a {
     text-decoration: none;
     color: inherit;
