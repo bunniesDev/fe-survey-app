@@ -3,7 +3,7 @@ import { MdCheck, MdBarChart, MdKeyboardArrowLeft } from 'react-icons/md';
 import { FaAirbnb, FaRegGrinTongueSquint } from 'react-icons/fa';
 import Button from './components/UI/Button';
 import Card from './components/UI/Card';
-import Colmn from './components/UI/Grid/Column';
+import Column from './components/UI/Grid/Column';
 import Row from './components/UI/Grid/Row';
 import RadioButton from './components/UI/RadioButton/RadioButton';
 import RadioButtonGroup from './components/UI/RadioButton/RadioButtonGroup';
@@ -83,7 +83,7 @@ function App() {
       </Card>
       <Card>
         <Row gutter="md">
-          <Colmn cols="6" md="4" lg="2">
+          <Column cols="6" md="4" lg="2">
             <Button
               variant="secondary"
               size="lg"
@@ -92,8 +92,8 @@ function App() {
             >
               돌아가기
             </Button>
-          </Colmn>
-          <Colmn cols="6" md="8" lg="10">
+          </Column>
+          <Column cols="6" md="8" lg="10">
             <Button
               variant="primary"
               size="lg"
@@ -102,7 +102,7 @@ function App() {
             >
               결과보기
             </Button>
-          </Colmn>
+          </Column>
         </Row>
       </Card>
       <Card>

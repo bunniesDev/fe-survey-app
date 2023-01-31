@@ -5,7 +5,7 @@ function getCalculateCols(span) {
   return `width : ${(span / 12) * 100}%`;
 }
 
-const StyledColmn = styled.div`
+const StyledColumn = styled.div`
   ${({ cols }) => cols && getCalculateCols(cols)};
   @media screen and (min-width: 768px) {
     ${({ sm }) => sm && getCalculateCols(sm)}
@@ -18,8 +18,8 @@ const StyledColmn = styled.div`
   }
 `;
 
-function Colmn({ children, ...props }) {
-  return <StyledColmn {...props}>{children}</StyledColmn>;
+function Column({ children, ...props }) {
+  return <StyledColumn {...props}>{children}</StyledColumn>;
 }
 
-export default Colmn;
+export default Column;
