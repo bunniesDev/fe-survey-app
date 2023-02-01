@@ -1,15 +1,7 @@
 import { Chart, registerables } from 'chart.js';
 import { useEffect, useRef } from 'react';
-import ChartWrapper from './ChartWrapper';
 
-function DoughnutChart({
-  data = [],
-  labels = [],
-  title = '',
-  minHeight,
-  minWidth,
-  id,
-}) {
+function DoughnutChart({ data = [], labels = [], id }) {
   const canvasRef = useRef();
   const total = data.reduce((acc, cur) => acc + cur);
   const sortLabelAndData = data
@@ -80,11 +72,7 @@ function DoughnutChart({
     };
   }, []);
 
-  return (
-    <ChartWrapper minHeight={minHeight} minWidth={minWidth} title={title}>
-      <canvas ref={canvasRef} id={`chart${id}`} />
-    </ChartWrapper>
-  );
+  return <canvas ref={canvasRef} id={`chart${id}`} />;
 }
 
 export default DoughnutChart;
