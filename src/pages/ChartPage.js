@@ -1,6 +1,7 @@
 import React from 'react';
 import BarChart from '../components/chart/BarChart';
 import { mock, QUESTION } from '../components/chart/data';
+import DoughnutChart from '../components/chart/DoughnutChart';
 
 function ChartPage() {
   // mock data
@@ -26,6 +27,15 @@ function ChartPage() {
           data={chart.chartData}
           labels={chart.labels}
           axis="x"
+          title={chart.title}
+        />
+      ))}
+      {dataList.map(chart => (
+        <DoughnutChart
+          key={chart.title}
+          id={chart.title}
+          data={chart.chartData}
+          labels={chart.labels}
           title={chart.title}
         />
       ))}
