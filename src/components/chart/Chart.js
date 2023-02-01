@@ -18,6 +18,8 @@ const Title = styled.h3`
 const CanvasWrapper = styled.div`
   min-height: ${props => (props.minHeight ? props.minHeight : '300px')};
   min-width: ${props => (props.minWidth ? props.minWidth : 'inherit')};
+  display: flex;
+  align-items: center;
 `;
 
 function Chart({
@@ -48,7 +50,9 @@ function Chart({
                   {...options}
                 />
               ),
-              stack: <StackedBarChart />,
+              stack: (
+                <StackedBarChart data={data} labels={labels} {...options} />
+              ),
             }[type]
           }
         </CanvasWrapper>
