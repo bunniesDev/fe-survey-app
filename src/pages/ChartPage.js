@@ -17,8 +17,39 @@ function ChartPage() {
     },
   ];
 
+  const dataList2 = [
+    {
+      title: '나는 고양이파 vs 강아지파',
+      labels: ['고양이', '강아지'],
+      data: [0.9, 0.1], // 데이터 자체를 비율에 맞게 formmat해서 보내기
+      options: {
+        color: ['rgb(75, 192, 192)', 'rgb(255, 159, 64)'],
+      },
+    },
+    {
+      title: '나는 부먹 vs 찍먹 ',
+      labels: ['부먹', '찍먹'],
+      data: [0.35, 0.65],
+      options: {
+        color: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+      },
+    },
+  ];
+
   return (
     <>
+      {dataList2.map(chart => (
+        <Chart
+          type="stack"
+          key={chart.title}
+          id={chart.title}
+          title={chart.title}
+          data={chart.data}
+          labels={chart.labels}
+          options={chart.options}
+          minHeight="inherit"
+        />
+      ))}
       {dataList.map(chart => (
         <Chart
           key={chart.title}
@@ -40,6 +71,7 @@ function ChartPage() {
           labels={chart.labels}
           title={chart.title}
           type="doughnut"
+          minHeight="500px"
         />
       ))}
     </>

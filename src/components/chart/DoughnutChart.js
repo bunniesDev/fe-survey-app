@@ -23,7 +23,8 @@ function DoughnutChart({ data = [], labels = [], id }) {
     type: 'doughnut',
     data: chartData,
     options: {
-      responsive: true,
+      // responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           position: 'top',
