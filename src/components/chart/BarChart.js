@@ -2,18 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { backgroundColor, borderColor } from './color';
-import ChartWrapper from './ChartWrapper';
 
 // domId, data, label, xy축 결정
-function BarChart({
-  data = [],
-  labels = [],
-  axis = 'x',
-  title = '',
-  minHeight,
-  minWidth,
-  id,
-}) {
+function BarChart({ data = [], labels = [], axis = 'x', id }) {
   const canvasRef = useRef();
 
   const chartData = {
@@ -80,11 +71,7 @@ function BarChart({
     };
   }, []);
 
-  return (
-    <ChartWrapper minHeight={minHeight} minWidth={minWidth} title={title}>
-      <canvas ref={canvasRef} id={`chart${id}`} />
-    </ChartWrapper>
-  );
+  return <canvas ref={canvasRef} id={`chart${id}`} />;
 }
 
 export default BarChart;
