@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Card from '../UI/Card';
 import BarChart from './BarChart';
 import DoughnutChart from './DoughnutChart';
+import StackedBarChart from './StackedBarChart';
 
 /* Wrapper */
 const Wrapper = styled.div`
@@ -15,7 +16,8 @@ const Title = styled.h3`
 
 /* Canvas Wrapper */
 const CanvasWrapper = styled.div`
-  min-height: 300px;
+  min-height: ${props => (props.minHeight ? props.minHeight : '300px')};
+  min-width: ${props => (props.minWidth ? props.minWidth : 'inherit')};
 `;
 
 function Chart({
@@ -29,10 +31,10 @@ function Chart({
   options = {},
 }) {
   return (
-    <Wrapper minHeight={minHeight} minWidth={minWidth}>
+    <Wrapper>
       <Title>{title}</Title>
       <Card>
-        <CanvasWrapper>
+        <CanvasWrapper minHeight={minHeight} minWidth={minWidth}>
           {
             {
               bar: (
@@ -46,6 +48,7 @@ function Chart({
                   {...options}
                 />
               ),
+              stack: <StackedBarChart />,
             }[type]
           }
         </CanvasWrapper>
