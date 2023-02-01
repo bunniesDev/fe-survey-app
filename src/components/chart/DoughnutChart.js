@@ -1,22 +1,6 @@
 import { Chart, registerables } from 'chart.js';
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import Card from '../UI/Card';
-
-/* Wrapper */
-const Wrapper = styled.div`
-  margin-bottom: 2rem;
-`;
-
-/* Title */
-const Title = styled.h3`
-  text-align: center;
-`;
-
-/* Canvas Wrapper */
-const CanvasWrapper = styled.div`
-  min-height: 300px;
-`;
+import ChartWrapper from './ChartWrapper';
 
 function DoughnutChart({
   data = [],
@@ -97,14 +81,9 @@ function DoughnutChart({
   }, []);
 
   return (
-    <Wrapper minHeight={minHeight} minWidth={minWidth}>
-      <Title>{title}</Title>
-      <Card>
-        <CanvasWrapper>
-          <canvas ref={canvasRef} id={`chart${id}`} />
-        </CanvasWrapper>
-      </Card>
-    </Wrapper>
+    <ChartWrapper minHeight={minHeight} minWidth={minWidth} title={title}>
+      <canvas ref={canvasRef} id={`chart${id}`} />
+    </ChartWrapper>
   );
 }
 
