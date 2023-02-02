@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MdCheck, MdBarChart, MdKeyboardArrowLeft } from 'react-icons/md';
 import { FaAirbnb, FaRegGrinTongueSquint } from 'react-icons/fa';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Button from './components/UI/Button';
 import Card from './components/UI/Card';
 import Column from './components/UI/Grid/Column';
@@ -58,11 +59,17 @@ function App() {
   };
   return (
     <MainLayout>
-      <IntroPage />
-      <ChartPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<IntroPage />} />
+          <Route path="chartPage" element={<ChartPage />} />
+        </Routes>
+      </BrowserRouter>
+
       <Card>
         <ProgressBar step="4" total="20" />
       </Card>
+
       <Card>
         <RadioButtonGroup
           label="질문 1"
@@ -81,8 +88,10 @@ function App() {
             </RadioButton>
           ))}
         </RadioButtonGroup>
+
         <p>선택된 값 : {selectedValue}</p>
       </Card>
+
       <Card>
         <Row gutter="md">
           <Column cols="6" md="4" lg="2">
@@ -107,6 +116,7 @@ function App() {
           </Column>
         </Row>
       </Card>
+
       <Card>
         <Button variant="primary" size="lg" block>
           시작하기
