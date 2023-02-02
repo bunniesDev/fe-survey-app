@@ -13,6 +13,7 @@ import MainLayout from './components/layouts/MainLayout';
 import useDialogs from './components/UI/Dialog/useDialogs';
 import ProgressBar from './components/UI/ProgressBar';
 import DialogAlerts from './components/UI/Dialog/DialogAlerts';
+import bunnyGif from './bunnyGif.gif';
 
 const OPTIONS = [
   { id: 1, text: '리액트' },
@@ -57,6 +58,7 @@ function App() {
   };
   return (
     <MainLayout>
+      <img src={bunnyGif} alt="bunnyGif" />
       <ChartPage />
       <Card>
         <ProgressBar step="4" total="20" />
