@@ -37,7 +37,7 @@ function MyModal({ onClose, onSubmit }) {
 }
 
 function App() {
-  const [selectedVaule, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState(null);
   const { openDialog } = useDialogs();
 
   const handleClickStart = () => {
@@ -64,7 +64,7 @@ function App() {
       <Card>
         <RadioButtonGroup
           label="질문 1"
-          value={selectedVaule}
+          value={selectedValue}
           name="question-1"
           onChange={handleChangeValue}
         >
@@ -79,7 +79,7 @@ function App() {
             </RadioButton>
           ))}
         </RadioButtonGroup>
-        <p>선택된 값 : {selectedVaule}</p>
+        <p>선택된 값 : {selectedValue}</p>
       </Card>
       <Card>
         <Row gutter="md">
