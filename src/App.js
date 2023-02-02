@@ -13,6 +13,7 @@ import MainLayout from './components/layouts/MainLayout';
 import useDialogs from './components/UI/Dialog/useDialogs';
 import ProgressBar from './components/UI/ProgressBar';
 import DialogAlerts from './components/UI/Dialog/DialogAlerts';
+import SurveyPage from './pages/SurveyPage';
 
 const OPTIONS = [
   { id: 1, text: '리액트' },
@@ -57,6 +58,7 @@ function App() {
   };
   return (
     <MainLayout>
+      <SurveyPage />
       <ChartPage />
       <Card>
         <ProgressBar step="4" total="20" />
