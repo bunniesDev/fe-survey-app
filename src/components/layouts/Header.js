@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { color } from '../../../theme';
+import { color } from '../../theme';
 
 const StyledHeader = styled.header`
   display: flex;

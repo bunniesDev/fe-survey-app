@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
-import MainLayout from './components/UI/layouts/MainLayout';
-import Card from './components/UI/Card';
-import ProgressBar from './components/UI/ProgressBar';
-import RadioButtonGroup from './components/UI/RadioButton/RadioButtonGroup';
-import RadioButton from './components/UI/RadioButton/RadioButton';
-import Button from './components/UI/Button';
-import data from './data';
-import submitData from './submit';
-import useDialogs from './components/UI/Dialog/useDialogs';
-import DialogAlerts from './components/UI/Dialog/DialogAlerts';
+import Card from '../components/UI/Card';
+import ProgressBar from '../components/UI/ProgressBar';
+import RadioButtonGroup from '../components/UI/RadioButton/RadioButtonGroup';
+import RadioButton from '../components/UI/RadioButton/RadioButton';
+import Button from '../components/UI/Button';
+import data from '../dummy/data';
+import useDialogs from '../components/UI/Dialog/useDialogs';
+import DialogAlerts from '../components/UI/Dialog/DialogAlerts';
 
 const Count = styled.h4`
   text-align: center;
@@ -36,8 +34,6 @@ const NotSeletedMessageFont = styled.h3`
   margin: 5px;
 `;
 
-let count = 0;
-
 function MyModal({ onClose, onSubmit }) {
   return (
     <DialogAlerts
@@ -52,7 +48,13 @@ function MyModal({ onClose, onSubmit }) {
   );
 }
 
-export default function App1() {
+let count = 0;
+const submitData = [];
+for (let i = 0; i < data.length; i += 1) {
+  submitData.push({ id: i, select: null });
+}
+
+export default function SurveyPage() {
   const [selectedVaule, setSelectedValue] = useState(submitData);
   const [question, setQuestion] = useState(data[count].question);
   const [counter, setCounter] = useState(data[count].id + 1);
@@ -64,10 +66,10 @@ export default function App1() {
     if (count === selectedVaule[count].id) {
       const update = [...selectedVaule];
       update.splice(count, 1, { id: count, select: v });
-      console.log(update);
       setSelectedValue(update);
     }
   };
+
   const submitHandler = () => {
     if (selectedVaule[count].select === null) {
       setNotSeleted(true);
@@ -80,6 +82,7 @@ export default function App1() {
       },
     });
   };
+
   const nextQuestionHandler = () => {
     if (selectedVaule[count].select === null) {
       setNotSeleted(true);
@@ -101,64 +104,57 @@ export default function App1() {
   };
 
   return (
-    <MainLayout>
-      <Card>
-        {count === 0 ? null : (
-          <Button
-            variant="text"
-            size="sm"
-            startIcon={<MdKeyboardArrowLeft />}
-            onClick={prevQuestionHandler}
-          >
-            이전질문
-          </Button>
-        )}
-        <Count>
-          {counter} of {data.length}
-        </Count>
-        <ProgressBar step={counter} total="20" />
-        <Question>Q. {question}</Question>
-        <RadioButtonGroup
-          label="질문 1"
-          value={selectedVaule[count].select}
-          name="question-1"
-          onChange={handleChangeValue}
+    <Card>
+      {count === 0 ? null : (
+        <Button
+          variant="text"
+          size="sm"
+          startIcon={<MdKeyboardArrowLeft />}
+          onClick={prevQuestionHandler}
         >
-          {answer.map((option, index) => (
-            <RadioButton
-              id={`radio-${data[index].id}`}
-              block
-              key={data[index].id}
-              value={option}
-            >
-              {option}
-            </RadioButton>
-          ))}
-        </RadioButtonGroup>
-        <Blank marginBottom={40} />
-
-        {count === data.length - 1 ? (
-          <Button variant="primary" size="lg" block onClick={submitHandler}>
-            제출하기
-          </Button>
-        ) : (
-          <Button
-            variant="primary"
-            size="lg"
+          이전질문
+        </Button>
+      )}
+      <Count>
+        {counter} of {data.length}
+      </Count>
+      <ProgressBar step={counter} total="20" />
+      <Question>Q. {question}</Question>
+      <RadioButtonGroup
+        label="질문 1"
+        value={selectedVaule[count].select}
+        name="question-1"
+        onChange={handleChangeValue}
+      >
+        {answer.map((option, index) => (
+          <RadioButton
+            id={`radio-${data[index].id}`}
             block
-            onClick={nextQuestionHandler}
+            key={data[index].id}
+            value={option}
           >
-            다음
-          </Button>
-        )}
-        {notSeleted ? (
-          <NotSeletedMessage>
-            <NotSeletedMessageFont>답변을 선택해주세요</NotSeletedMessageFont>
-          </NotSeletedMessage>
-        ) : (
-          <Blank marginBottom={50} />
-        )}
-      </Card>
-    </MainLayout>
+            {option}
+          </RadioButton>
+        ))}
+      </RadioButtonGroup>
+      <Blank marginBottom={40} />
+
+      {count === data.length - 1 ? (
+        <Button variant="primary" size="lg" block onClick={submitHandler}>
+          제출하기
+        </Button>
+      ) : (
+        <Button variant="primary" size="lg" block onClick={nextQuestionHandler}>
+          다음
+        </Button>
+      )}
+      {notSeleted ? (
+        <NotSeletedMessage>
+          <NotSeletedMessageFont>답변을 선택해주세요</NotSeletedMessageFont>
+        </NotSeletedMessage>
+      ) : (
+        <Blank marginBottom={50} />
+      )}
+    </Card>
   );
 }
