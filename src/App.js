@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="chartPage" element={<ChartPage />} />
+          <Route path="chart" element={<ChartPage />} />
           <Route path="survey" element={<SurveyPage />} />
           <Route path="test" element={<TestPage />} />
         </Routes>
