@@ -17,8 +17,10 @@ function ChartPage() {
         data: temp[idx].options,
       }));
       const twoOpt = newArr.filter(item => item.data.length <= 2);
+      const threeMoreOpt = newArr.filter(item => item.data.length > 2);
+
       setTwoOptQuestions(twoOpt);
-      setQuestions(newArr);
+      setQuestions(threeMoreOpt);
     })();
   }, []);
 
@@ -39,19 +41,6 @@ function ChartPage() {
           labels={chart.labels}
           options={chart.options}
           minHeight="inherit"
-        />
-      ))}
-      {questions.map(chart => (
-        <Chart
-          key={chart.id}
-          id={chart.id}
-          data={chart.data}
-          labels={chart.labels}
-          title={chart.title}
-          type="bar"
-          options={{
-            axis: 'x',
-          }}
         />
       ))}
       {questions.map(chart => (
