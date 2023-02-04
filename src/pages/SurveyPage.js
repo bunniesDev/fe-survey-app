@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/UI/Card';
 import ProgressBar from '../components/UI/ProgressBar';
 import RadioButtonGroup from '../components/UI/RadioButton/RadioButtonGroup';
@@ -44,7 +45,7 @@ function MyModal({ onClose, onSubmit }) {
       labelClose="돌아가기"
       labelSubmit="제출하기"
     >
-      제출하시겠습니까?
+      제출하시겠습니까? 제출 시,잠시후 결과 페이지로 이동됩니다.🎉
     </DialogAlerts>
   );
 }
@@ -62,6 +63,7 @@ export default function SurveyPage() {
   const [counter, setCounter] = useState(data[count].id + 1);
   const [answer, setAnswer] = useState(data[count].answer);
   const [notSelected, setNotSelected] = useState(false);
+  const navigate = useNavigate();
   const { openDialog } = useDialogs();
 
   const handleChangeValue = v => {
@@ -81,7 +83,14 @@ export default function SurveyPage() {
     openDialog(MyModal, {
       onSubmit: () => {
         const finalData = selectedValue.map(el => el.index);
-        postQuestions(finalData);
+        try {
+          postQuestions(finalData);
+          setTimeout(() => {
+            navigate('/chart');
+          }, 500);
+        } catch (error) {
+          console.log('-통신 에러-');
+        }
       },
     });
   };
