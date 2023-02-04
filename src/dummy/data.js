@@ -97,7 +97,7 @@ const data = [
   {
     id: 19,
     question: '부먹 찍먹',
-    answer: ['부먹', '찍먹', '기타'],
+    answer: ['부먹', '찍먹'],
   },
 ];
 
