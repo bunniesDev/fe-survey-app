@@ -60,12 +60,12 @@ export default function SurveyPage() {
   const [question, setQuestion] = useState(data[count].question);
   const [counter, setCounter] = useState(data[count].id + 1);
   const [answer, setAnswer] = useState(data[count].answer);
-  const [notSeleted, setNotSeleted] = useState(false);
+  const [notSelected, setNotSelected] = useState(false);
   const { openDialog } = useDialogs();
 
   const handleChangeValue = v => {
-    if (count === selectedVaule[count].id) {
-      const update = [...selectedVaule];
+    if (count === selectedValue[count].id) {
+      const update = [...selectedValue];
       update.splice(count, 1, { id: count, select: v ,index:indexA});
       setSelectedValue(update);
     
@@ -80,7 +80,7 @@ export default function SurveyPage() {
     setNotSelected(false);
     openDialog(MyModal, {
       onSubmit: () => {
-        const finalData = selectedVaule.map((el)=>el.index)
+        const finalData = selectedValue.map((el)=>el.index)
         console.log(finalData);
       },
     });
