@@ -5,7 +5,10 @@ function DoughnutChart({ data = [], labels = [], id }) {
   const canvasRef = useRef();
   const total = data.reduce((acc, cur) => acc + cur);
   const sortLabelAndData = data
-    .map((value, index) => [labels[index], Math.floor((value / total) * 100)])
+    .map((value, index) => [
+      labels[index],
+      value ? Math.floor((value / total) * 100) : 1,
+    ])
     .sort((a, b) => b[1] - a[1]);
 
   const chartData = {
