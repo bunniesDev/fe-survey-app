@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Chart from '../components/chart/Chart';
 import { mock, QUESTION } from '../components/chart/data';
+import { getQuestions } from '../util/firebaseApi';
+import staticData from '../dummy/data';
 
 function ChartPage() {
   // mock data
+  // eslint-disable-next-line no-unused-vars
   const dataList = [
     {
       chartData: mock.q1.options,
@@ -36,6 +39,25 @@ function ChartPage() {
     },
   ];
 
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const temp = await getQuestions();
+      const newArr = staticData.map((item, idx) => ({
+        title: item.question,
+        id: item.id,
+        labels: item.answer,
+        data: temp[idx].options,
+      }));
+      setQuestions(newArr);
+    })();
+  }, []);
+
+  if (questions.length === 0) {
+    return <div>로딩중</div>;
+  }
+
   return (
     <>
       {dataList2.map(chart => (
@@ -50,11 +72,11 @@ function ChartPage() {
           minHeight="inherit"
         />
       ))}
-      {dataList.map(chart => (
+      {questions.map(chart => (
         <Chart
-          key={chart.title}
-          id={chart.title}
-          data={chart.chartData}
+          key={chart.id}
+          id={chart.id}
+          data={chart.data}
           labels={chart.labels}
           title={chart.title}
           type="bar"
@@ -63,11 +85,11 @@ function ChartPage() {
           }}
         />
       ))}
-      {dataList.map(chart => (
+      {questions.map(chart => (
         <Chart
-          key={chart.title}
-          id={chart.title}
-          data={chart.chartData}
+          key={chart.id}
+          id={chart.id}
+          data={chart.data}
           labels={chart.labels}
           title={chart.title}
           type="doughnut"
