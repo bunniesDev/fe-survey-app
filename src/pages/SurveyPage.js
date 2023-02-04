@@ -49,6 +49,7 @@ function MyModal({ onClose, onSubmit }) {
 }
 
 let count = 0;
+let indexA=0
 const submitData = [];
 for (let i = 0; i < data.length; i += 1) {
   submitData.push({ id: i, select: null });
@@ -65,8 +66,9 @@ export default function SurveyPage() {
   const handleChangeValue = v => {
     if (count === selectedValue[count].id) {
       const update = [...selectedValue];
-      update.splice(count, 1, { id: count, select: v });
+      update.splice(count, 1, { id: count, select: v ,index:indexA});
       setSelectedValue(update);
+    
     }
   };
 
@@ -78,7 +80,8 @@ export default function SurveyPage() {
     setNotSelected(false);
     openDialog(MyModal, {
       onSubmit: () => {
-        // console.log('비지니스 로직 처리...');
+        const finalData = selectedValue.map((el)=>el.index)
+        console.log(finalData);
       },
     });
   };
@@ -132,6 +135,7 @@ export default function SurveyPage() {
             block
             key={data[index].id}
             value={option}
+            onClick={()=>{indexA=index}}
           >
             {option}
           </RadioButton>

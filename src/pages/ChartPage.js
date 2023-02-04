@@ -1,48 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Chart from '../components/chart/Chart';
-import { mock, QUESTION } from '../components/chart/data';
+import { getQuestions } from '../util/firebaseApi';
+import staticData from '../dummy/data';
 
 function ChartPage() {
-  // mock data
-  const dataList = [
-    {
-      chartData: mock.q1.options,
-      labels: QUESTION[1].options,
-      title: QUESTION[1].title,
-    },
-    {
-      chartData: mock.q2.options,
-      labels: QUESTION[2].options,
-      title: QUESTION[2].title,
-    },
-  ];
+  const [questions, setQuestions] = useState([]);
+  const [twoOptQuestions, setTwoOptQuestions] = useState([]);
 
-  const dataList2 = [
-    {
-      title: '나는 고양이파 vs 강아지파',
-      labels: ['고양이', '강아지'],
-      data: [0.9, 0.1], // 데이터 자체를 비율에 맞게 formmat해서 보내기
-      options: {
-        color: ['rgb(75, 192, 192)', 'rgb(255, 159, 64)'],
-      },
-    },
-    {
-      title: '나는 부먹 vs 찍먹 ',
-      labels: ['부먹', '찍먹'],
-      data: [0.35, 0.65],
-      options: {
-        color: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
-      },
-    },
-  ];
+  useEffect(() => {
+    (async () => {
+      const temp = await getQuestions();
+      const newArr = staticData.map((item, idx) => ({
+        title: item.question,
+        id: item.id,
+        labels: item.answer,
+        data: temp[idx].options,
+      }));
+      const twoOpt = newArr.filter(item => item.data.length <= 2);
+      setTwoOptQuestions(twoOpt);
+      setQuestions(newArr);
+    })();
+  }, []);
+
+  // 데이터가 없는 경우 임시 로딩 스피너
+  if (questions.length === 0) {
+    return <div>로딩중</div>;
+  }
 
   return (
     <>
-      {dataList2.map(chart => (
+      {twoOptQuestions.map(chart => (
         <Chart
           type="stack"
-          key={chart.title}
-          id={chart.title}
+          key={chart.id}
+          id={chart.id}
           title={chart.title}
           data={chart.data}
           labels={chart.labels}
@@ -50,11 +41,11 @@ function ChartPage() {
           minHeight="inherit"
         />
       ))}
-      {dataList.map(chart => (
+      {questions.map(chart => (
         <Chart
-          key={chart.title}
-          id={chart.title}
-          data={chart.chartData}
+          key={chart.id}
+          id={chart.id}
+          data={chart.data}
           labels={chart.labels}
           title={chart.title}
           type="bar"
@@ -63,11 +54,11 @@ function ChartPage() {
           }}
         />
       ))}
-      {dataList.map(chart => (
+      {questions.map(chart => (
         <Chart
-          key={chart.title}
-          id={chart.title}
-          data={chart.chartData}
+          key={chart.id}
+          id={chart.id}
+          data={chart.data}
           labels={chart.labels}
           title={chart.title}
           type="doughnut"
