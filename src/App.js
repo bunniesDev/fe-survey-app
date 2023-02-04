@@ -6,6 +6,7 @@ import MainLayout from './components/layouts/MainLayout';
 
 import IntroPage from './pages/IntroPage';
 import TestPage from './pages/TestPage';
+import SurveyPage from './pages/SurveyPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<IntroPage />} />
           <Route path="chartPage" element={<ChartPage />} />
+          <Route path="survey" element={<SurveyPage />} />
           <Route path="test" element={<TestPage />} />
         </Routes>
       </BrowserRouter>
