@@ -75,7 +75,6 @@ function TestPage() {
             </RadioButton>
           ))}
         </RadioButtonGroup>
-
         <p>선택된 값 : {selectedValue}</p>
       </Card>
 
@@ -112,6 +111,7 @@ function TestPage() {
           결과보기
         </Button>
       </Card>
+
       <Card>
         <Row>
           <Button variant="primary" size="lg" startIcon={<MdCheck />}>
