@@ -10,7 +10,7 @@ const GifWrapper = styled(Link)`
 
 function IntroPage() {
   return (
-    <GifWrapper to="/chartPage">
+    <GifWrapper to="/survey">
       <img src={bunnyGif} alt="bunnyGif" />
     </GifWrapper>
   );
