@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chart from '../components/chart/Chart';
 import { getQuestions } from '../util/firebaseApi';
 import staticData from '../dummy/data';
+import Loading from '../components/chart/Loading';
 
 function ChartPage() {
   const [questions, setQuestions] = useState([]);
@@ -26,7 +27,7 @@ function ChartPage() {
 
   // 데이터가 없는 경우 임시 로딩 스피너
   if (questions.length === 0) {
-    return <div>로딩중</div>;
+    return <Loading />;
   }
 
   return (
