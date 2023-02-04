@@ -33,7 +33,7 @@ function ChartPage() {
     <>
       {twoOptQuestions.map(chart => (
         <Chart
-          type="stack"
+          isStacked
           key={chart.id}
           id={chart.id}
           title={chart.title}
@@ -45,6 +45,7 @@ function ChartPage() {
       ))}
       {questions.map(chart => (
         <Chart
+          isStacked={false}
           key={chart.id}
           id={chart.id}
           data={chart.data}
