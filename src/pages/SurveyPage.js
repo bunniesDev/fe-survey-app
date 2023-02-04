@@ -25,12 +25,12 @@ const Question = styled.h2`
 const Blank = styled.div`
   margin-bottom: ${props => props.marginBottom}px;
 `;
-const NotSeletedMessage = styled.div`
+const NotSelectedMessage = styled.div`
   color: red;
   display: flex;
   justify-content: center;
 `;
-const NotSeletedMessageFont = styled.h3`
+const NotSelectedMessageFont = styled.h3`
   margin: 5px;
 `;
 
@@ -56,12 +56,11 @@ for (let i = 0; i < data.length; i += 1) {
 }
 
 export default function SurveyPage() {
-  const [selectedVaule, setSelectedValue] = useState(submitData);
+  const [selectedValue, setSelectedValue] = useState(submitData);
   const [question, setQuestion] = useState(data[count].question);
   const [counter, setCounter] = useState(data[count].id + 1);
   const [answer, setAnswer] = useState(data[count].answer);
   const [notSeleted, setNotSeleted] = useState(false);
-  // const [answerindex, setAnswerindex] = useState(null);
   const { openDialog } = useDialogs();
 
   const handleChangeValue = v => {
@@ -74,11 +73,11 @@ export default function SurveyPage() {
   };
 
   const submitHandler = () => {
-    if (selectedVaule[count].select === null) {
-      setNotSeleted(true);
+    if (selectedValue[count].select === null) {
+      setNotSelected(true);
       return;
     }
-    setNotSeleted(false);
+    setNotSelected(false);
     openDialog(MyModal, {
       onSubmit: () => {
         const finalData = selectedVaule.map((el)=>el.index)
@@ -88,15 +87,15 @@ export default function SurveyPage() {
   };
 
   const nextQuestionHandler = () => {
-    if (selectedVaule[count].select === null) {
-      setNotSeleted(true);
+    if (selectedValue[count].select === null) {
+      setNotSelected(true);
       return;
     }
     count += 1;
     setQuestion(data[count].question);
     setCounter(data[count].id + 1);
     setAnswer(data[count].answer);
-    setNotSeleted(false);
+    setNotSelected(false);
   };
 
   const prevQuestionHandler = () => {
@@ -104,7 +103,7 @@ export default function SurveyPage() {
     setQuestion(data[count].question);
     setCounter(data[count].id + 1);
     setAnswer(data[count].answer);
-    setNotSeleted(false);
+    setNotSelected(false);
   };
 
   return (
@@ -126,7 +125,7 @@ export default function SurveyPage() {
       <Question>Q. {question}</Question>
       <RadioButtonGroup
         label="질문 1"
-        value={selectedVaule[count].select}
+        value={selectedValue[count].select}
         name="question-1"
         onChange={handleChangeValue}
       >
@@ -153,10 +152,10 @@ export default function SurveyPage() {
           다음
         </Button>
       )}
-      {notSeleted ? (
-        <NotSeletedMessage>
-          <NotSeletedMessageFont>답변을 선택해주세요</NotSeletedMessageFont>
-        </NotSeletedMessage>
+      {notSelected ? (
+        <NotSelectedMessage>
+          <NotSelectedMessageFont>답변을 선택해주세요</NotSelectedMessageFont>
+        </NotSelectedMessage>
       ) : (
         <Blank marginBottom={50} />
       )}
