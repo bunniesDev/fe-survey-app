@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { borderColor } from './color';
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,17 +33,22 @@ const Title = styled.strong`
   color: #fff;
 `;
 
-function StackedBarChart({ data, labels, color = borderColor }) {
+function StackedBarChart({
+  data,
+  labels,
+  color = ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
+}) {
+  const total = data.reduce((acc, cur) => acc + cur, 0);
   return (
     <Wrapper>
       {data.map((item, idx) => (
         <Bar
-          key={`stack-chart${item}`}
+          key={`stack-chart-${labels[idx]}`}
           backgroundColor={color[idx]}
           percent={item}
         >
           <Title>{labels[idx]}</Title>
-          <Title small>{item * 100}%</Title>
+          <Title small>{item ? (item / total).toFixed(2) * 100 : 0}%</Title>
         </Bar>
       ))}
     </Wrapper>
