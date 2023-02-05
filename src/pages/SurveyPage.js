@@ -7,7 +7,7 @@ import Button from '../components/UI/Button';
 import data from '../dummy/data';
 import useDialogs from '../components/UI/Dialog/useDialogs';
 import DialogAlerts from '../components/UI/Dialog/DialogAlerts';
-// import { postQuestions } from '../util/firebaseApi';
+import { postQuestions } from '../util/firebaseApi';
 import SurveyContext from '../context/survey-context';
 import MainLayout from '../components/layouts/MainLayout';
 
@@ -51,8 +51,7 @@ function SurveyPage() {
       onSubmit: () => {
         localStorage.setItem('isSubmit', 'done');
         const finalData = selectedValue.map(el => el.select);
-        console.log(finalData);
-        // postQuestions(finalData);
+        postQuestions(finalData);
         navigate('/chart', { replace: true });
       },
     });
