@@ -39,17 +39,20 @@ const ProductInfo = styled.div`
 `;
 
 function IntroPage() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const loadingTime = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      localStorage.setItem('visitedRecord', true);
     }, 2500);
   };
 
   useEffect(() => {
-    loadingTime();
+    if (!localStorage.getItem('visitedRecord')) {
+      loadingTime();
+    }
   }, []);
 
   if (loading) {
