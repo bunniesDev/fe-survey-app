@@ -46,8 +46,8 @@ const data = [
   },
   {
     id: 9,
-    question: '일하고 싶은 분야',
-    answer: ['교육', '금융', '게임', '커머스', '기타'],
+    question: '선호하는 데이터베이스',
+    answer: ['MySQL', 'MongoDB', 'PostgreSQL', 'SQL Server', '기타'],
   },
   {
     id: 10,
