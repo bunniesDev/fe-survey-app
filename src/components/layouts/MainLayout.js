@@ -1,45 +1,99 @@
-import React from 'react';
-import { MdKeyboardArrowLeft } from 'react-icons/md';
+import React, { useContext } from 'react';
+import { MdHome, MdKeyboardArrowLeft } from 'react-icons/md';
 import styled from 'styled-components';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Button from '../UI/Button';
+import NoneLayout from './NoneLayout';
+import ProgressBar from '../UI/ProgressBar';
+import SurveyContext from '../../context/survey-context';
+import data from '../../dummy/data';
 
-const StyledMainLayout = styled.main`
-  max-width: 800px;
-  margin: 0 auto;
+const StyledMainLayout = styled(NoneLayout)``;
 
-  article {
-    padding: 1rem 0;
-  }
+const StyledArticle = styled.article`
+  padding: 0;
+  height: calc(100vh - 4.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
 `;
 
-function MainLayout() {
+const StyledContentWrapper = styled.div`
+  overflow-y: auto;
+  padding: 2rem 1.5rem;
+`;
+
+const StyledButtonGroup = styled.div`
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+`;
+
+function ContentArea({ children }) {
+  return <StyledContentWrapper>{children}</StyledContentWrapper>;
+}
+
+function BottomArea({ children }) {
+  return <StyledButtonGroup>{children}</StyledButtonGroup>;
+}
+
+function LayoutMain() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { stepIndex, onPrevQuestionHandler, onSubmitHandler } =
+    useContext(SurveyContext);
+
+  const historyBackHandler = () => {
+    if (stepIndex === 0) {
+      navigate('/');
+    } else {
+      onPrevQuestionHandler();
+    }
+  };
+
+  const resetHandler = () => {
+    onSubmitHandler();
+    navigate('/');
+  };
 
   return (
     <StyledMainLayout>
       <Header>
         <Header.Left>
-          <Button
-            variant="text"
-            size="sm"
-            startIcon={<MdKeyboardArrowLeft />}
-            onClick={() => {
-              navigate('/');
-            }}
-          >
-            뒤로가기
-          </Button>
+          {location.pathname !== '/chart' && (
+            <Button
+              variant="text"
+              size="md"
+              startIcon={<MdKeyboardArrowLeft />}
+              onClick={historyBackHandler}
+            >
+              Back
+            </Button>
+          )}
         </Header.Left>
-        <Header.Title>프론트엔드 설문조사</Header.Title>
-        <Header.Right />
+        <Header.Title>FE Trending</Header.Title>
+        <Header.Right>
+          {location.pathname === '/chart' && (
+            <Button variant="secondary" size="sm" onClick={resetHandler}>
+              <MdHome />
+            </Button>
+          )}
+        </Header.Right>
       </Header>
-      <article>
+      {location.pathname !== '/chart' && (
+        <ProgressBar step={stepIndex + 1} total={data.length} />
+      )}
+      <StyledArticle>
         <Outlet />
-      </article>
+      </StyledArticle>
     </StyledMainLayout>
   );
 }
+
+const MainLayout = Object.assign(LayoutMain, {
+  Content: ContentArea,
+  Bottom: BottomArea,
+});
 
 export default MainLayout;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import loadingImg from '../../img/bunnyGif.gif';
+import loadingImg from '../../assets/images/intro_bunny_ani.gif';
 
 const Container = styled.div`
   height: 100vh;

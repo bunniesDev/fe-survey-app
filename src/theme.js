@@ -16,7 +16,7 @@ export const blockStyle = css`
 
 export const color = {
   $primary: '#56b1f3',
-  $danger: '#a93a3a',
+  $danger: '#d32626',
   $success: '#78EC8A',
   $white: '#ffffff',
   $black: '#131313',

@@ -58,7 +58,6 @@ const StyledButton = styled.button`
   border-style: solid;
   border-radius: ${props => (props.rounded ? '2rem' : `${radius.$sm}`)};
   padding: var(--button-padding);
-  font-weight: bold;
   border-color: var(--button-border-color);
   font-size: var(--button-font-size);
   background: var(--button-bg-color);

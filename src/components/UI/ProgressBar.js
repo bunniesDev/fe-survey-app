@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { color, radius } from '../../theme';
+import { color } from '../../theme';
 
 const StyledProgressBarContainer = styled.div`
   position: relative;
-  border-radius: ${radius.$lg};
   background-color: ${color.$light};
-  height: 1rem;
+  height: 0.5rem;
   overflow: hidden;
 `;
 

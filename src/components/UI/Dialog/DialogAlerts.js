@@ -51,38 +51,54 @@ const StyledDialogFooter = styled.div`
 `;
 
 const StyledDialogContents = styled.div`
-  padding: 1rem;
+  padding: 2rem 1rem;
+  text-align: center;
 `;
 
 function DialogContainer({
   children,
   title,
-  labelClose = '취소',
-  labelSubmit = '확인',
+  labelClose,
+  labelSubmit,
+  labelCustom,
   onSubmit,
   onClose,
+  onCustom,
 }) {
-  const handleClickSubmit = () => {
+  const submitHandler = () => {
     onSubmit();
   };
 
-  const handleClickCancel = () => {
+  const closeHandler = () => {
     onClose();
+  };
+
+  const customHandler = () => {
+    onCustom();
   };
 
   return createPortal(
     <StyledDialogContainer>
-      <StyledDimmed onClick={handleClickCancel} />
+      <StyledDimmed onClick={closeHandler} />
       <StyledDialog>
         {title && <StyledDialogHeader>{title}</StyledDialogHeader>}
         <StyledDialogContents>{children}</StyledDialogContents>
         <StyledDialogFooter>
-          <Button variant="secondary" onClick={handleClickCancel}>
-            {labelClose}
-          </Button>
-          <Button variant="primary" onClick={handleClickSubmit}>
-            {labelSubmit}
-          </Button>
+          {labelClose && (
+            <Button variant="secondary" onClick={closeHandler}>
+              {labelClose}
+            </Button>
+          )}
+          {labelCustom && (
+            <Button variant="secondary" onClick={customHandler}>
+              {labelCustom}
+            </Button>
+          )}
+          {labelSubmit && (
+            <Button variant="primary" onClick={submitHandler}>
+              {labelSubmit}
+            </Button>
+          )}
         </StyledDialogFooter>
       </StyledDialog>
     </StyledDialogContainer>,
