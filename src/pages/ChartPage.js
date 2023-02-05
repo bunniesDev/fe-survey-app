@@ -32,18 +32,6 @@ function ChartPage() {
 
   return (
     <>
-      {twoOptQuestions.map(chart => (
-        <Chart
-          isStacked
-          key={chart.id}
-          id={chart.id}
-          title={chart.title}
-          data={chart.data}
-          labels={chart.labels}
-          options={chart.options}
-          minHeight="inherit"
-        />
-      ))}
       {questions.map(chart => (
         <Chart
           isStacked={false}
@@ -54,6 +42,18 @@ function ChartPage() {
           title={chart.title}
           type="doughnut"
           minHeight="500px"
+        />
+      ))}
+      {twoOptQuestions.map(chart => (
+        <Chart
+          isStacked
+          key={chart.id}
+          id={chart.id}
+          title={chart.title}
+          data={chart.data}
+          labels={chart.labels}
+          options={chart.options}
+          minHeight="inherit"
         />
       ))}
     </>
