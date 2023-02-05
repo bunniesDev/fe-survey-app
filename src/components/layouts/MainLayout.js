@@ -26,7 +26,7 @@ function MainLayout() {
             size="sm"
             startIcon={<MdKeyboardArrowLeft />}
             onClick={() => {
-              navigate(-1);
+              navigate('/');
             }}
           >
             뒤로가기
