@@ -5,6 +5,7 @@ import ChartPage from './pages/ChartPage';
 
 import IntroPage from './pages/IntroPage';
 import SurveyPage from './pages/SurveyPage';
+import MainLayout from './components/layouts/MainLayout';
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<IntroPage />} />
-          <Route path="chart" element={<ChartPage />} />
-          <Route path="survey" element={<SurveyPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="chart" element={<ChartPage />} />
+            <Route path="survey" element={<SurveyPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <GlobalStyles />

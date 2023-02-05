@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chart from '../components/chart/Chart';
 import { getQuestions } from '../util/firebaseApi';
 import staticData from '../dummy/data';
+import Loading from '../components/chart/Loading';
 
 function ChartPage() {
   const [questions, setQuestions] = useState([]);
@@ -17,21 +18,23 @@ function ChartPage() {
         data: temp[idx].options,
       }));
       const twoOpt = newArr.filter(item => item.data.length <= 2);
+      const threeMoreOpt = newArr.filter(item => item.data.length > 2);
+
       setTwoOptQuestions(twoOpt);
-      setQuestions(newArr);
+      setQuestions(threeMoreOpt);
     })();
   }, []);
 
   // 데이터가 없는 경우 임시 로딩 스피너
   if (questions.length === 0) {
-    return <div>로딩중</div>;
+    return <Loading />;
   }
 
   return (
     <>
       {twoOptQuestions.map(chart => (
         <Chart
-          type="stack"
+          isStacked
           key={chart.id}
           id={chart.id}
           title={chart.title}
@@ -43,19 +46,7 @@ function ChartPage() {
       ))}
       {questions.map(chart => (
         <Chart
-          key={chart.id}
-          id={chart.id}
-          data={chart.data}
-          labels={chart.labels}
-          title={chart.title}
-          type="bar"
-          options={{
-            axis: 'x',
-          }}
-        />
-      ))}
-      {questions.map(chart => (
-        <Chart
+          isStacked={false}
           key={chart.id}
           id={chart.id}
           data={chart.data}

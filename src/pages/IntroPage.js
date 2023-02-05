@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/UI/Button';
 import Vector from '../img/Vector.png';
+import Loading from '../components/UI/IntroLoading';
 
 const Wrapper = styled.div`
   margin: 0 1rem;
@@ -38,6 +39,23 @@ const ProductInfo = styled.div`
 `;
 
 function IntroPage() {
+  const [loading, setLoading] = useState(true);
+
+  const loadingTime = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  };
+
+  useEffect(() => {
+    loadingTime();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <Wrapper>
       <div>

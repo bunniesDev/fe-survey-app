@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import styled from 'styled-components';
+import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Button from '../UI/Button';
 
@@ -13,7 +14,7 @@ const StyledMainLayout = styled.main`
   }
 `;
 
-function MainLayout({ children }) {
+function MainLayout() {
   return (
     <StyledMainLayout>
       <Header>
@@ -25,7 +26,9 @@ function MainLayout({ children }) {
         <Header.Title>프론트엔드 설문조사</Header.Title>
         <Header.Right />
       </Header>
-      <article>{children}</article>
+      <article>
+        <Outlet />
+      </article>
     </StyledMainLayout>
   );
 }
