@@ -3,6 +3,7 @@ import Chart from '../components/chart/Chart';
 import { getQuestions } from '../util/firebaseApi';
 import staticData from '../dummy/data';
 import Loading from '../components/chart/Loading';
+import ChartTitle from '../components/chart/ChartTitle';
 
 function ChartPage() {
   const [questions, setQuestions] = useState([]);
@@ -32,6 +33,7 @@ function ChartPage() {
 
   return (
     <>
+      <ChartTitle />
       {questions.map(chart => (
         <Chart
           isStacked={false}
