@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/UI/Card';
@@ -66,6 +66,19 @@ export default function SurveyPage() {
   const navigate = useNavigate();
   const { openDialog } = useDialogs();
 
+  useEffect(() => {
+    count=0;
+    setQuestion(data[count].question);
+    setCounter(data[count].id + 1);
+    setAnswer(data[count].answer);
+    setNotSelected(false);
+    const isdone = localStorage.getItem('isSubmit')
+    if(isdone === 'done'){
+      alert('이미 설문조사를 완료하여 메인페이지로 이동합니다.')
+      navigate('/');
+    }
+  }, [])
+
   const handleChangeValue = v => {
     if (count === selectedValue[count].id) {
       const update = [...selectedValue];
@@ -82,6 +95,7 @@ export default function SurveyPage() {
     setNotSelected(false);
     openDialog(MyModal, {
       onSubmit: () => {
+        localStorage.setItem('isSubmit','done');
         const finalData = selectedValue.map(el => el.index);
         postQuestions(finalData);
         setTimeout(() => {
