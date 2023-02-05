@@ -8,11 +8,12 @@ import StackedBarChart from './StackedBarChart';
 
 /* Wrapper */
 const Wrapper = styled.div`
-  margin-bottom: 2rem;
+  padding: 1rem 0;
 `;
 
 const Headr = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -20,16 +21,14 @@ const Headr = styled.div`
 
 /* Title */
 const Title = styled.h3`
+  margin: 0;
   text-align: center;
   flex: 1 1 0;
 `;
 
 const ToggleButton = styled(Button)`
   justify-items: flex-end;
-  position: absolute;
-  font-size: 12px;
-  right: 5px;
-  /* bottom: 5px; */
+  align-self: end;
 `;
 
 /* Canvas Wrapper */
@@ -72,7 +71,9 @@ function Chart({
         <Headr>
           <Title>{title}</Title>
           {!isStacked ? (
-            <ToggleButton onClick={handleClick}>변경</ToggleButton>
+            <ToggleButton size="sm" onClick={handleClick}>
+              {toggle ? 'chart' : 'bar'}
+            </ToggleButton>
           ) : (
             ''
           )}
