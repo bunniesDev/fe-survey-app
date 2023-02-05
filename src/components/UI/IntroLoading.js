@@ -8,9 +8,8 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
-  font-size: 120%;
 `;
+
 function IntroLoading() {
   return (
     <Container>
