@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import styled from 'styled-components';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Header from './Header';
 import Button from '../UI/Button';
 
@@ -15,11 +15,20 @@ const StyledMainLayout = styled.main`
 `;
 
 function MainLayout() {
+  const navigate = useNavigate();
+
   return (
     <StyledMainLayout>
       <Header>
         <Header.Left>
-          <Button variant="text" size="sm" startIcon={<MdKeyboardArrowLeft />}>
+          <Button
+            variant="text"
+            size="sm"
+            startIcon={<MdKeyboardArrowLeft />}
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
             뒤로가기
           </Button>
         </Header.Left>
