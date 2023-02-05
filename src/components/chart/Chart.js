@@ -68,15 +68,15 @@ function Chart({
 
   return (
     <Wrapper>
-      <Headr>
-        <Title>{title}</Title>
-        {!isStacked ? (
-          <ToggleButton onClick={handleClick}>변경</ToggleButton>
-        ) : (
-          ''
-        )}
-      </Headr>
       <Card>
+        <Headr>
+          <Title>{title}</Title>
+          {!isStacked ? (
+            <ToggleButton onClick={handleClick}>변경</ToggleButton>
+          ) : (
+            ''
+          )}
+        </Headr>
         <CanvasWrapper minHeight={minHeight} minWidth={minWidth}>
           {chart}
         </CanvasWrapper>
