@@ -83,14 +83,10 @@ export default function SurveyPage() {
     openDialog(MyModal, {
       onSubmit: () => {
         const finalData = selectedValue.map(el => el.index);
-        try {
-          postQuestions(finalData);
-          setTimeout(() => {
-            navigate('/chart');
-          }, 500);
-        } catch (error) {
-          console.log('-통신 에러-');
-        }
+        postQuestions(finalData);
+        setTimeout(() => {
+          navigate('/chart');
+        }, 500);
       },
     });
   };
