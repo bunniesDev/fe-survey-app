@@ -8,7 +8,7 @@ import StackedBarChart from './StackedBarChart';
 
 /* Wrapper */
 const Wrapper = styled.div`
-  padding: 1rem;
+  padding: 1rem 0;
 `;
 
 const Headr = styled.div`
