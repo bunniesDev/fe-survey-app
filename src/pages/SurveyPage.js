@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/UI/Card';
 import ProgressBar from '../components/UI/ProgressBar';
 import RadioButtonGroup from '../components/UI/RadioButton/RadioButtonGroup';
@@ -9,6 +10,7 @@ import Button from '../components/UI/Button';
 import data from '../dummy/data';
 import useDialogs from '../components/UI/Dialog/useDialogs';
 import DialogAlerts from '../components/UI/Dialog/DialogAlerts';
+import { postQuestions } from '../util/firebaseApi';
 
 const Count = styled.h4`
   text-align: center;
@@ -43,13 +45,13 @@ function MyModal({ onClose, onSubmit }) {
       labelClose="돌아가기"
       labelSubmit="제출하기"
     >
-      제출하시겠습니까?
+      제출하시겠습니까? 제출 시,잠시후 결과 페이지로 이동됩니다.🎉
     </DialogAlerts>
   );
 }
 
 let count = 0;
-let indexA=0
+let indexA = 0;
 const submitData = [];
 for (let i = 0; i < data.length; i += 1) {
   submitData.push({ id: i, select: null });
@@ -61,14 +63,14 @@ export default function SurveyPage() {
   const [counter, setCounter] = useState(data[count].id + 1);
   const [answer, setAnswer] = useState(data[count].answer);
   const [notSelected, setNotSelected] = useState(false);
+  const navigate = useNavigate();
   const { openDialog } = useDialogs();
 
   const handleChangeValue = v => {
     if (count === selectedValue[count].id) {
       const update = [...selectedValue];
-      update.splice(count, 1, { id: count, select: v ,index:indexA});
+      update.splice(count, 1, { id: count, select: v, index: indexA });
       setSelectedValue(update);
-    
     }
   };
 
@@ -80,8 +82,11 @@ export default function SurveyPage() {
     setNotSelected(false);
     openDialog(MyModal, {
       onSubmit: () => {
-        const finalData = selectedValue.map((el)=>el.index)
-        console.log(finalData);
+        const finalData = selectedValue.map(el => el.index);
+        postQuestions(finalData);
+        setTimeout(() => {
+          navigate('/chart');
+        }, 500);
       },
     });
   };
@@ -135,7 +140,9 @@ export default function SurveyPage() {
             block
             key={data[index].id}
             value={option}
-            onClick={()=>{indexA=index}}
+            onClick={() => {
+              indexA = index;
+            }}
           >
             {option}
           </RadioButton>

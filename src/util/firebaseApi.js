@@ -1,4 +1,12 @@
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+/* eslint-disable no-plusplus */
+import {
+  collection,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  writeBatch,
+} from 'firebase/firestore';
 import db from './firebase';
 
 export const getQuestions = async () => {
@@ -15,4 +23,19 @@ export const getQuestions = async () => {
   return temp;
 };
 
-export const postQuestions = () => {};
+export const postQuestions = async data => {
+  const prev = await getQuestions();
+  const updateData = prev.map((item, idx) => {
+    const [options] = [item.options];
+    options[data[idx]]++;
+    return options;
+  });
+
+  const batch = writeBatch(db);
+  for (let idx = 1; idx <= 20; idx++) {
+    batch.update(doc(db, `questions`, `question${idx}`), {
+      options: updateData[idx - 1],
+    });
+  }
+  await batch.commit();
+};
