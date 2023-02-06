@@ -2,6 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 import CookieRunRegular from './assets/fonts/CookieRun-Regular.woff2';
 
 const GlobalStyles = createGlobalStyle` 
+  :root {
+       --vh: 100%;
+   }
 
   @font-face {
     font-family: 'CookieRunRegular';
