@@ -48,7 +48,7 @@ function StackedBarChart({
           percent={item}
         >
           <Title>{labels[idx]}</Title>
-          <Title small>{item ? (item / total).toFixed(2) * 100 : 0}%</Title>
+          <Title small>{item ? Math.round((item / total) * 100) : 0}%</Title>
         </Bar>
       ))}
     </Wrapper>
