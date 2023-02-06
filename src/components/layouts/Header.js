@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import { color } from '../../theme';
 
@@ -7,13 +6,17 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid ${color.$border};
+  height: 4rem;
 `;
 
 const StyledHeaderLeftArea = styled.div`
   flex: 1;
   text-align: left;
+  button {
+    margin-left: -1rem;
+  }
 `;
 const StyledHeaderRightArea = styled.div`
   flex: 1;
@@ -22,7 +25,7 @@ const StyledHeaderRightArea = styled.div`
 
 const StyledTitle = styled.h1`
   flex: 3;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   margin: 0;
   padding: 0;

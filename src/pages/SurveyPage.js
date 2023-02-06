@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-import React, { useState,useEffect } from 'react';
-import { MdKeyboardArrowLeft } from 'react-icons/md';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Card from '../components/UI/Card';
-import ProgressBar from '../components/UI/ProgressBar';
 import RadioButtonGroup from '../components/UI/RadioButton/RadioButtonGroup';
 import RadioButton from '../components/UI/RadioButton/RadioButton';
 import Button from '../components/UI/Button';
@@ -11,29 +8,13 @@ import data from '../dummy/data';
 import useDialogs from '../components/UI/Dialog/useDialogs';
 import DialogAlerts from '../components/UI/Dialog/DialogAlerts';
 import { postQuestions } from '../util/firebaseApi';
+import SurveyContext from '../context/survey-context';
+import MainLayout from '../components/layouts/MainLayout';
 
-const Count = styled.h4`
+const StyledQuestion = styled.h2`
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 60px;
-  font-size: 20px;
-`;
-
-const Question = styled.h2`
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 60px;
-`;
-const Blank = styled.div`
-  margin-bottom: ${props => props.marginBottom}px;
-`;
-const NotSelectedMessage = styled.div`
-  color: red;
-  display: flex;
-  justify-content: center;
-`;
-const NotSelectedMessageFont = styled.h3`
-  margin: 5px;
+  margin: 0 0 2rem;
+  font-size: 1.25rem;
 `;
 
 function MyModal({ onClose, onSubmit }) {
@@ -45,141 +26,88 @@ function MyModal({ onClose, onSubmit }) {
       labelClose="돌아가기"
       labelSubmit="제출하기"
     >
-      제출하시겠습니까? 제출 시,잠시후 결과 페이지로 이동됩니다.🎉
+      제출하시겠습니까? <br />
+      제출 시, 잠시후 결과 페이지로 이동됩니다.🎉
     </DialogAlerts>
   );
 }
 
-let count = 0;
-let indexA = 0;
-const submitData = [];
-for (let i = 0; i < data.length; i += 1) {
-  submitData.push({ id: i, select: null });
-}
-
-export default function SurveyPage() {
-  const [selectedValue, setSelectedValue] = useState(submitData);
-  const [question, setQuestion] = useState(data[count].question);
-  const [counter, setCounter] = useState(data[count].id + 1);
-  const [answer, setAnswer] = useState(data[count].answer);
-  const [notSelected, setNotSelected] = useState(false);
+function SurveyPage() {
   const navigate = useNavigate();
   const { openDialog } = useDialogs();
+  const {
+    selectedValue,
+    onChangeValueHandler,
+    onNextQuestionHandler,
+    stepIndex,
+  } = useContext(SurveyContext);
 
-  useEffect(() => {
-    count=0;
-    setQuestion(data[count].question);
-    setCounter(data[count].id + 1);
-    setAnswer(data[count].answer);
-    setNotSelected(false);
-    const isdone = localStorage.getItem('isSubmit')
-    if(isdone === 'done'){
-      alert('이미 설문조사를 완료하여 메인페이지로 이동합니다.')
-      navigate('/');
-    }
-  }, [])
-
-  const handleChangeValue = v => {
-    if (count === selectedValue[count].id) {
-      const update = [...selectedValue];
-      update.splice(count, 1, { id: count, select: v, index: indexA });
-      setSelectedValue(update);
-    }
+  const changeValueHandler = (v, i) => {
+    onChangeValueHandler(v, i);
   };
 
   const submitHandler = () => {
-    if (selectedValue[count].select === null) {
-      setNotSelected(true);
-      return;
-    }
-    setNotSelected(false);
     openDialog(MyModal, {
       onSubmit: () => {
-        localStorage.setItem('isSubmit','done');
-        const finalData = selectedValue.map(el => el.index);
+        localStorage.setItem('isSubmit', 'done');
+        const finalData = selectedValue.map(el => el.select);
         postQuestions(finalData);
-        setTimeout(() => {
-          navigate('/chart');
-        }, 500);
+        navigate('/chart', { replace: true });
       },
     });
   };
 
   const nextQuestionHandler = () => {
-    if (selectedValue[count].select === null) {
-      setNotSelected(true);
-      return;
-    }
-    count += 1;
-    setQuestion(data[count].question);
-    setCounter(data[count].id + 1);
-    setAnswer(data[count].answer);
-    setNotSelected(false);
-  };
-
-  const prevQuestionHandler = () => {
-    count -= 1;
-    setQuestion(data[count].question);
-    setCounter(data[count].id + 1);
-    setAnswer(data[count].answer);
-    setNotSelected(false);
+    onNextQuestionHandler();
   };
 
   return (
-    <Card>
-      {count === 0 ? null : (
-        <Button
-          variant="text"
-          size="sm"
-          startIcon={<MdKeyboardArrowLeft />}
-          onClick={prevQuestionHandler}
+    <>
+      <MainLayout.Content>
+        <StyledQuestion>Q. {data[stepIndex].question}</StyledQuestion>
+        <RadioButtonGroup
+          label={data[stepIndex].question}
+          value={selectedValue[stepIndex].select}
+          name={`question-${stepIndex}`}
+          onChange={changeValueHandler}
         >
-          이전질문
-        </Button>
-      )}
-      <Count>
-        {counter} of {data.length}
-      </Count>
-      <ProgressBar step={counter} total="20" />
-      <Question>Q. {question}</Question>
-      <RadioButtonGroup
-        label="질문 1"
-        value={selectedValue[count].select}
-        name="question-1"
-        onChange={handleChangeValue}
-      >
-        {answer.map((option, index) => (
-          <RadioButton
-            id={`radio-${data[index].id}`}
+          {data[stepIndex].answer.map((option, index) => (
+            <RadioButton
+              id={`radio-${data[index].id}`}
+              block
+              key={data[index].id}
+              value={index}
+            >
+              {option}
+            </RadioButton>
+          ))}
+        </RadioButtonGroup>
+      </MainLayout.Content>
+      <MainLayout.Bottom>
+        {stepIndex === data.length - 1 ? (
+          <Button
+            variant="primary"
+            size="lg"
             block
-            key={data[index].id}
-            value={option}
-            onClick={() => {
-              indexA = index;
-            }}
+            onClick={submitHandler}
+            disabled={selectedValue[stepIndex].select === null}
           >
-            {option}
-          </RadioButton>
-        ))}
-      </RadioButtonGroup>
-      <Blank marginBottom={40} />
-
-      {count === data.length - 1 ? (
-        <Button variant="primary" size="lg" block onClick={submitHandler}>
-          제출하기
-        </Button>
-      ) : (
-        <Button variant="primary" size="lg" block onClick={nextQuestionHandler}>
-          다음
-        </Button>
-      )}
-      {notSelected ? (
-        <NotSelectedMessage>
-          <NotSelectedMessageFont>답변을 선택해주세요</NotSelectedMessageFont>
-        </NotSelectedMessage>
-      ) : (
-        <Blank marginBottom={50} />
-      )}
-    </Card>
+            제출하기
+          </Button>
+        ) : (
+          <Button
+            variant="primary"
+            size="lg"
+            block
+            onClick={nextQuestionHandler}
+            disabled={selectedValue[stepIndex].select === null}
+          >
+            다음 ( {stepIndex + 1} / {data.length} )
+          </Button>
+        )}
+      </MainLayout.Bottom>
+    </>
   );
 }
+
+export default React.memo(SurveyPage);

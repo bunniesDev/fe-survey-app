@@ -21,7 +21,7 @@ const Headr = styled.div`
 
 /* Title */
 const Title = styled.h3`
-  margin: 0;
+  margin: 0 0 1rem;
   text-align: center;
   flex: 1 1 0;
 `;
@@ -51,7 +51,7 @@ function Chart({
 }) {
   const [toggle, setToggle] = useState(true);
 
-  const handleClick = () => {
+  const toggleHandler = () => {
     setToggle(preState => !preState);
   };
 
@@ -71,7 +71,7 @@ function Chart({
         <Headr>
           <Title>{title}</Title>
           {!isStacked ? (
-            <ToggleButton size="sm" onClick={handleClick}>
+            <ToggleButton size="sm" onClick={toggleHandler}>
               {toggle ? 'chart' : 'bar'}
             </ToggleButton>
           ) : (

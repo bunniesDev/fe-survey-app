@@ -7,23 +7,32 @@ function Dialog() {
 
   return opendDialogs.map((dialog, index) => {
     const { Component, props } = dialog;
-    const { onSubmit, ...restProps } = props;
+    const { onClose, onCustom, onSubmit, ...restProps } = props;
 
-    const onClose = () => {
+    const closeHandler = async () => {
       close(Component);
     };
-    const handleSubmit = async () => {
+
+    const customHandler = async () => {
+      if (typeof onCustom === 'function') {
+        await onCustom();
+      }
+      closeHandler();
+    };
+
+    const submitHandler = async () => {
       if (typeof onSubmit === 'function') {
         await onSubmit();
       }
-      onClose();
+      closeHandler();
     };
 
     return (
       <Component
         key={index}
-        onClose={onClose}
-        onSubmit={handleSubmit}
+        onClose={closeHandler}
+        onSubmit={submitHandler}
+        onCustom={customHandler}
         {...restProps}
       />
     );
