@@ -38,7 +38,7 @@
 
   <tr align="center">
     <td><img src="https://avatars.githubusercontent.com/u/115906460?v=4" width="150px"/></td>
-    <td><img src="https://avatars.githubusercontent.com/u/112179965?v=4"  width="150px"/></td>
+    <td><img src="https://blog.kakaocdn.net/dn/bHNYl6/btrYjmdBGzV/wKPn4JkBg7VknLGjLdlmj1/img.png"  width="150px"/></td>
     <td><img src="https://avatars.githubusercontent.com/u/19286161?v=4" width="150px"/></td>
   </tr>
 
