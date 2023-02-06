@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - 4.5rem);
+  height: calc(var(--vh, 1vh) * 100 - 4.5rem);
   width: 100%;
   display: flex;
   justify-content: center;

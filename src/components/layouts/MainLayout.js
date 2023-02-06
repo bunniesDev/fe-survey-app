@@ -13,7 +13,8 @@ const StyledMainLayout = styled(NoneLayout)``;
 
 const StyledArticle = styled.article`
   padding: 0;
-  height: calc(100vh - 4.5rem);
+  height: calc(100vh - 4.5rem); /* fallback */
+  height: calc(var(--vh, 1vh) * 100 - 4.5rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

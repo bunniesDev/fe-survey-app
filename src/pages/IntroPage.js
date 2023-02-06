@@ -16,6 +16,8 @@ const StyledArticle = styled.article`
   justify-content: space-between;
   padding: 3rem 1.5rem;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+
   overflow-y: auto;
   &.intro-main {
     background-image: url(${IntroBg});
