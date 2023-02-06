@@ -1,11 +1,33 @@
 # 프론트엔드 취준생 설문조사 By.Bunnies Dev
-> 프론트엔드 취업준비생들을 위한 Survey
+> 프론트엔드 취업 준비생들을 위한 Survey 어플리케이션 <br>
+> Mobile Web Application
+
 
 ## 🔎 구경하기
-> [설문조사 하러가기](배포URL)
+> 🐰 [Front-end Survey 하러 GO](배포URL)
+
+<br>
+
+## 🔥 주요 화면
+### 메인 페이지
+|메인 화면|
+|---|
+|<img src="https://i.imgur.com/8FgNdgy.png" width=250 height=500 alt="메인페이지"/>|
+
+### 설문 조사 페이지
+|설문 조사 화면|설문 제출 화면|
+|--- |---|
+|<img src="https://i.imgur.com/HRr94mN.png" width=250 height=500 alt="설문 조사 페이지"/> |<img src="https://i.imgur.com/GipOMMW.png" width=250 height=500 alt="설문 조사 제출 페이지"/> |
+
+### 설문 조사 결과 페이지
+|바 차트|도넛 차트|vs 차트|
+|---|---|---|
+|<img src="https://i.imgur.com/7iBCyPy.png" width=250 height=500 alt="바 차트"/> | <img src="https://i.imgur.com/CHthV4s.png" width=250 height=500 alt="도넛 차트"/>|<img src="https://i.imgur.com/mXUNTwy.png" width=250 height=500 alt="VS 차트"/>|
+
+
+<br>
 
 ## 🧑🏻‍💻팀원 소개
-
 
 <table>
 
@@ -50,20 +72,34 @@
 
 </table>
 
-## 기술 스택
-- React
-- Styled-Components
-- React router
-- React icons
-- Chart.js
-- Firebase
-- GitPage
+<br>
 
+
+## ⚙️ 기술 스택
+
+### 💄 Front-end
+| React | React Router | React Icons | Styled-<br>Components | Chart.JS |
+| :---: | :---: | :---: | :---: | :---: |
+|  <img height="65" width="65" src="https://cdn.simpleicons.org/react/#61DAFB" /> |  <img height="65" width="65" src="https://cdn.simpleicons.org/reactrouter" /> |  <img height="65" width="65" src="https://camo.githubusercontent.com/48d099290b4cb2d7937bcd96e8497cf1845b54a810a6432c70cf944b60b40c77/68747470733a2f2f7261776769742e636f6d2f676f72616e67616a69632f72656163742d69636f6e732f6d61737465722f72656163742d69636f6e732e737667" />  |  <img height="65" width="65" src="https://cdn.simpleicons.org/styledComponents" /> | <img height="65" width="65" src="https://cdn.simpleicons.org/Chart.js" />
+
+### 🔧 Deplay & Back-end
+| GitPage | Firebase |
+| :---: | :---: |
+|  <img height="65" width="65" src="https://cdn.simpleicons.org/github" /> |  <img height="65" width="65" src="https://cdn.simpleicons.org/firebase" />
+
+
+
+### 🚀 Tools & Dev Enviroment
+| VSCode | Git | ESLint | Prettier | Discord | Notion |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <img height="65" width="65" src="https://cdn.simpleicons.org/visualstudiocode" />|  <img height="65" width="65" src="https://cdn.simpleicons.org/git" /> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/eslint-icon.svg" alt="icon" width="65" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | <img height="65" width="65" src="https://cdn.simpleicons.org/discord" /> | <img height="65" width="65" src="https://cdn.simpleicons.org/notion" />
+
+<br>
 
 ## 📅 개발 기간 & 일정
 
-> 2023/01/04 ~ 2023/02/xx 
-> 주 1회 `2시간`씩 
+> 2023/01/04 ~ 2023/02/04 <br>
+> 주 1회 **2시간**씩 
 
 <table>
 
@@ -72,30 +108,35 @@
     <td>주요 일정</td>
   </tr>
 
-  <tr align="center">
+  <tr>
     <td>1주차</td>
     <td>아이디어 선정 및 요구 사항 정리, 유저플로우 작성</td>
   </tr>
-    <tr align="center">
+    <tr>
     <td>2주차</td>
     <td>프로젝트 rule(컨벤션, 기술스택 등) 결정 및 역할 분담 </td>
   </tr>
-    <tr align="center">
+    <tr>
     <td>3주차</td>
     <td>프로젝트 셋팅 및 기능 개발</td>
   </tr>
-    <tr align="center">
+    <tr>
     <td>4주차</td>
     <td>Firebase 연동 및 기능 개발</td>
     
   </tr>
-    <tr align="center">
+    <tr>
     <td>5주차</td>
     <td>개발 완료 및 배포</td>
     
   </tr>
 
 </table>
+
+<br>
+
+
+---
 
 ## 핵심 기능
 ### 설문 조사
@@ -104,27 +145,10 @@
 ### 설문 조사 결과
 - Chart.js를 사용해 설문조사 데이터를 시각화합니다
 
----
+<br>
+
 ## :pencil2: 유저 플로우
-![](https://i.imgur.com/mBtnMjt.png)
-
-
-
-
-
-## 주요 화면
-### 메인 페이지
-![메인 페이지](https://i.imgur.com/8FgNdgy.png)
-### 설문 조사 페이지
-|설문 조사 화면|설문 제출 화면|
-|--- |---|
-|![설문 조사 페이지](https://i.imgur.com/HRr94mN.png) |![설문 조사 제출 페이지](https://i.imgur.com/GipOMMW.png) |
-
-### 설문 조사 결과 페이지
-|바 차트|도넛 차트|vs 차트|
-|---|---|---|
-|![바 차트](https://i.imgur.com/7iBCyPy.png)|![도넛 차트](https://i.imgur.com/CHthV4s.png)|![vs 차트](https://i.imgur.com/mXUNTwy.png)|
-
+![유저 플로우](https://i.imgur.com/mBtnMjt.png)
 
 ---
 
@@ -148,4 +172,4 @@
 |📦|	package:|	컴파일된 파일 추가/수정
 |🚚|	truck:|	리소스 이동, 이름 변경
 |📄|	page_facing_up:|	라이센스 추가/수정
-|💡|	bulb:|	주석 추가/수정
+|💡|	bulb:|	주석 추가/수정
