@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RadioButtonGroup from '../components/UI/RadioButton/RadioButtonGroup';
 import RadioButton from '../components/UI/RadioButton/RadioButton';
@@ -10,6 +10,7 @@ import DialogAlerts from '../components/UI/Dialog/DialogAlerts';
 import { postQuestions } from '../util/firebaseApi';
 import SurveyContext from '../context/survey-context';
 import MainLayout from '../components/layouts/MainLayout';
+import Error from '../components/UI/Error';
 
 const StyledQuestion = styled.h2`
   text-align: center;
@@ -34,6 +35,7 @@ function MyModal({ onClose, onSubmit }) {
 
 function SurveyPage() {
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const { openDialog } = useDialogs();
   const {
     selectedValue,
@@ -48,11 +50,17 @@ function SurveyPage() {
 
   const submitHandler = () => {
     openDialog(MyModal, {
-      onSubmit: () => {
+      onSubmit: async () => {
         localStorage.setItem('isSubmit', 'done');
         const finalData = selectedValue.map(el => el.select);
-        postQuestions(finalData);
-        navigate('/chart', { replace: true });
+        // API error
+        const result = await postQuestions(finalData);
+        if (result.error) {
+          setError(true);
+        } else {
+          navigate('/chart', { replace: true });
+          setError(null);
+        }
       },
     });
   };
@@ -60,6 +68,22 @@ function SurveyPage() {
   const nextQuestionHandler = () => {
     onNextQuestionHandler();
   };
+
+  if (error) {
+    return (
+      <MainLayout.Content>
+        <Error
+          title="설문조사 제출에 실패했습니다."
+          description="다시 시도해주세요."
+          buttonText="다시 시도하기"
+          onErrorHandler={() => {
+            setError(null);
+            submitHandler();
+          }}
+        />
+      </MainLayout.Content>
+    );
+  }
 
   return (
     <>
