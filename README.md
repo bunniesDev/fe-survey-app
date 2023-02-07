@@ -4,7 +4,7 @@
 
 
 ## 🔎 구경하기
-> 🐰 [Front-end Survey 하러 GO](배포URL)
+> 🐰 [Front-end Survey 하러 GO](https://bunniesdev.github.io/fe-survey-app)
 
 <br>
 
