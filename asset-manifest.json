@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/bunniesDev/fe-survey-app/static/js/main.052f7a6f.js",
-    "static/media/CookieRun-Regular.woff2": "/bunniesDev/fe-survey-app/static/media/CookieRun-Regular.a1296f9053521a185dcc.woff2",
-    "static/media/intro_bunny_ani.gif": "/bunniesDev/fe-survey-app/static/media/intro_bunny_ani.9cb36dfb11685fc86709.gif",
-    "static/media/intro_bunny.png": "/bunniesDev/fe-survey-app/static/media/intro_bunny.a664bb9732ccbfc1a043.png",
-    "static/media/intro_bg.png": "/bunniesDev/fe-survey-app/static/media/intro_bg.4a4ef9d29dbf3169cb73.png",
-    "static/media/error.png": "/bunniesDev/fe-survey-app/static/media/error.fc585189265cc9564e71.png",
-    "index.html": "/bunniesDev/fe-survey-app/index.html",
-    "main.052f7a6f.js.map": "/bunniesDev/fe-survey-app/static/js/main.052f7a6f.js.map"
+    "main.js": "/fe-survey-app/static/js/main.9a71cb70.js",
+    "static/media/CookieRun-Regular.woff2": "/fe-survey-app/static/media/CookieRun-Regular.a1296f9053521a185dcc.woff2",
+    "static/media/intro_bunny_ani.gif": "/fe-survey-app/static/media/intro_bunny_ani.9cb36dfb11685fc86709.gif",
+    "static/media/intro_bunny.png": "/fe-survey-app/static/media/intro_bunny.a664bb9732ccbfc1a043.png",
+    "static/media/intro_bg.png": "/fe-survey-app/static/media/intro_bg.4a4ef9d29dbf3169cb73.png",
+    "static/media/error.png": "/fe-survey-app/static/media/error.fc585189265cc9564e71.png",
+    "index.html": "/fe-survey-app/index.html",
+    "main.9a71cb70.js.map": "/fe-survey-app/static/js/main.9a71cb70.js.map"
   },
   "entrypoints": [
-    "static/js/main.052f7a6f.js"
+    "static/js/main.9a71cb70.js"
   ]
 }
