@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="fe-survey-app">
         <Routes>
           <Route path="/" element={<IntroPage />} />
           <Route element={<MainLayout />}>
